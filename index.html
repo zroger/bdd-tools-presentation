@@ -341,6 +341,29 @@ Then the exit status should not be code
                 </section>
 
                 <section>
+                    <section>
+                        <h1>Examples</h1>
+                    </section>
+
+                    <section>
+                        <h2>Drupal/Behat</h2>
+                        <pre><code data-trim class="gherkin_en">
+Feature: Testing demo
+  Scenario: Visit the user login page
+    Given I am not logged in
+    When I visit "/user"
+    Then I should see the link "request a new password"
+
+  @api
+  Scenario: As a logged in user
+    Given I am logged in as a user with the "administrator" role
+    When I visit "/admin"
+    Then I should see the link "Content"
+                        </code></pre>
+                    </section>
+                </section>
+
+                <section>
                     <h1>THE END</h1>
                 </section>
 
