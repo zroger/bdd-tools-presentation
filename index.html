@@ -1,0 +1,385 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+
+        <title>Behavioral Testing Tools</title>
+
+        <meta name="description" content="">
+        <meta name="author" content="Roger López">
+
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+        <link rel="stylesheet" href="css/reveal.min.css">
+        <link rel="stylesheet" href="css/theme/serif.css" id="theme">
+
+        <!-- For syntax highlighting -->
+        <link rel="stylesheet" href="lib/css/zenburn.css">
+
+        <!-- If the query includes 'print-pdf', use the PDF print sheet -->
+        <script>
+            document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+        </script>
+
+        <!--[if lt IE 9]>
+        <script src="lib/js/html5shiv.js"></script>
+        <![endif]-->
+    </head>
+
+    <body>
+
+        <div class="reveal">
+
+            <!-- Any section element inside of this container is displayed as a slide -->
+            <div class="slides">
+                <section>
+                    <h1>BDD Tools</h1>
+                </section>
+
+                <section>
+                    <section>
+                        <h2>What is BDD?</h2>
+                        <blockquote>
+                            &ldquo;Behaviour-driven development is an “outside-in” methodology. It starts at the outside by identifying business outcomes, and then drills down into the feature set that will achieve those outcomes. Each feature is captured as a “story”, which defines the scope of the feature along with its acceptance criteria.&rdquo;
+                        </blockquote>
+                        <p><small>
+                            Dan North, <a href="http://dannorth.net/whats-in-a-story/">"What's in a Story"</a>
+                        </small></p>
+
+                        <aside class="notes">
+                        </aside>
+                    </section>
+
+                    <section>
+                        <h2>What is BDD?</h2>
+                        <blockquote>
+                            &ldquo;Behavior-driven development (or BDD) is an agile software development technique that encourages collaboration between developers, QA and non-technical or business participants in a software project.&rdquo;
+                        </blockquote>
+                        <p><small>
+                            <a href="http://pythonhosted.org/behave/">http://pythonhosted.org/behave/</a>
+                        </small></p>
+
+                        <aside class="notes">
+                        </aside>
+                    </section>
+                    
+                    <section>
+                        <h2>What is BDD?</h2>
+                        <blockquote>
+                            &ldquo;BDD provides a “ubiquitous language” for analysis&rdquo;
+                        </blockquote>
+                        <blockquote>
+                            &ldquo;Acceptance criteria should be executable&rdquo;
+                        </blockquote>
+                        <p><small>
+                            Dan North, <a href="http://dannorth.net/introducing-bdd/">"Introducing BDD"</a>
+                        </small></p>
+
+                        <aside class="notes">
+                        </aside>
+                    </section>
+
+                    <section>
+                        <h2>What is BDD?</h2>
+                        <blockquote>
+                            &ldquo;behave uses tests written in a <strong>natural language style</strong>, backed up by Python code.&rdquo;
+                        </blockquote>
+                        <p><small>
+                            <a href="http://pythonhosted.org/behave/">http://pythonhosted.org/behave/</a>
+                        </small></p>
+
+                        <aside class="notes">
+                        </aside>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h3 class="fragment grow highlight-blue">tests written in a natural language</h3>
+                        <h3 class="fragment shrink">backed up by code</h3>
+                    </section>
+
+                    <section>
+                        <h2>Gherkin</h2>
+                        <blockquote>
+                            It is a Business Readable, Domain Specific Language that lets you describe software’s behaviour without detailing how that behaviour is implemented.
+                        </blockquote>
+                        <p><small>
+                            <a href="https://github.com/cucumber/cucumber/wiki/Gherkin">https://github.com/cucumber/cucumber/wiki/Gherkin</a>
+                        </small></p>
+
+                        <aside class="notes">
+                        </aside>
+                    </section>
+
+                    <section>
+                        <h2>Given/When/Then</h2>
+                        <ul>
+                            <li class="fragment grow highlight-blue"><p><strong>Given: </strong>put the system in a known state.</p></li>
+                            <li class="fragment grow highlight-blue"><p><strong>When: </strong>describe the key action.</p></li>
+                            <li class="fragment grow highlight-blue"><p><strong>Then: </strong>observe outcomes.</p></li>
+                        </ul>
+
+                        <aside class="notes">
+                        </aside>
+                    </section>
+
+                    <section>
+                        <pre><code data-trim class="gherkin_en">
+Feature: Some terse yet descriptive text of what is desired
+  Textual description of the business value of this feature
+  Business rules that govern the scope of the feature
+  Any additional information that will make the feature easier to understand
+
+  Scenario: Some determinable business situation
+    Given some precondition
+      And some other precondition
+     When some action by the actor
+      And some other action
+      And yet another action
+     Then some testable outcome is achieved
+      And something else we can check happens too
+
+  Scenario: A different situation
+      ...
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <pre><code data-trim contenteditable>
+Feature: Division
+  In order to avoid silly mistakes
+  Cashiers must be able to calculate a fraction
+
+  Scenario: Regular numbers
+    Given I have entered 3 into the calculator
+    And I have entered 2 into the calculator
+    When I press divide
+    Then the result should be 1.5 on the screen
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <pre><code data-trim contenteditable class="gherkin_en">
+Feature: Addition
+  In order to avoid silly mistakes
+  As a math idiot 
+  I want to be told the sum of two numbers
+
+  Scenario Outline: Add two numbers
+    Given I have entered &lt;input_1> into the calculator
+    And I have entered &lt;input_2> into the calculator
+    When I press &lt;button>
+    Then the result should be &lt;output> on the screen
+
+  Examples:
+    | input_1 | input_2 | button | output |
+    | 20      | 30      | add    | 50     |
+    | 2       | 5       | add    | 7      |
+    | 0       | 40      | add    | 40     |
+                        </code></pre>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h4>tests written in a natural language</h4>
+                        <h3 class="fragment grow highlight-blue">backed up by code</h3>
+                    </section>
+
+                    <section>
+                        <h2>Implementation (Ruby cucumber)</h2>
+                        <pre><code data-trim class="gherkin_en">
+Scenario: Blenders
+  Given I put "apples" in a blender
+  When  I switch the blender on
+  Then  it should transform into "apple juice"
+                        </code></pre>
+
+                        <pre><code data-trim>
+Given /I put "([^"]*)" in a blender/ do |thing|
+    blender = Blender.new
+    blender.add(thing)
+end
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Implementation (PHP behat)</h2>
+                        <pre><code data-trim class="gherkin_en">
+Scenario: Blenders
+  Given I put "apples" in a blender
+  When  I switch the blender on
+  Then  it should transform into "apple juice"
+                        </code></pre>
+
+                        <pre><code data-trim>
+/**
+ * @Given /^I put "([^"]*)" in a blender$/
+ */
+public function iPutSomethingInABlender($thing) {
+    $this->blender = new Blender()
+    $blender->add($thing)
+}
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Implementation (python behave)</h2>
+                        <pre><code data-trim class="gherkin_en">
+Scenario: Blenders
+  Given I put "apples" in a blender
+  When  I switch the blender on
+  Then  it should transform into "apple juice"
+                        </code></pre>
+
+                        <pre><code data-trim>
+@given('I put "{thing}" in a blender')
+def step_given_put_thing_into_blender(context, thing):
+    context.blender = Blender()
+    context.blender.add(thing)
+
+@when('I switch the blender on')
+def step_when_switch_blender_on(context):
+    context.blender.switch_on()
+
+@then('it should transform into "{other_thing}"')
+def step_then_should_transform_into(context, other_thing):
+    assert_that(context.blender.result, equal_to(other_thing))
+                        </code></pre>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h2>Testing Domains</h2>
+                        <ul>
+                            <li>Web<ul>
+                                <li>Capybara, Watir (ruby)</li>
+                                <li>Mink (PHP)</li>
+                                <li>Behaving (Python)</li>
+                            </ul></li>
+                            <li>CLI<ul>
+                                <li>Aruba (ruby)</li>
+                            </ul></li>
+                            <li>Email, SMS<ul>
+                                <li>Behaving (python)</li>
+                            </ul></li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2>Browser steps (behaving)</h2>
+                        <pre><code data-trim class="gherkin_en">
+Feature: Google Search
+
+Background:
+  Given a browser
+
+Scenario: Search for Warby Parker
+  Given I go to "http://google.com"
+  When I fill in "q" with "warby parker"
+  And I press "I'm Feeling Lucky"
+  Then the browser's url should be "http://www.warbyparker.com"
+                        </code></pre>
+                    </section>
+
+
+                    <section>
+                        <h2>Browser steps (behaving)</h2>
+                        <pre><code data-trim class="gherkin_en">
+Given a browser
+Given brand as the default browser
+Given browser "name"
+When I reload
+When I go back
+When I go forward
+When I visit "url"
+When I go to "url"
+Then the browsers url should be "url"
+When I click the link with text that contains "text"
+Then I should see an element with the css selector "selector"
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>CLI testing with Aruba</h2>
+                        <pre><code data-trim class="gherkin_en">
+Feature: exit statuses
+
+  Scenario: exit status of 0
+    When I run "ruby -h"
+    Then the exit status should be 0
+
+  Scenario: non-zero exit status
+    When I run "ruby -e 'exit 56'"
+    Then the exit status should be 56
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>CLI testing with Aruba</h2>
+                        <pre><code data-trim class="gherkin_en">
+Given I am using a clean gemset "gemset"
+Given a directory named "dir"
+Given a file named "file" with: 
+Given an empty file named "file"
+When I cd to "dir"
+When I run `command`
+When I successfully run `command`
+When I type "string"
+Then the output should contain "text"
+Then the output should not contain "text"
+Then the exit status should be code
+Then the exit status should not be code
+                        </code></pre>
+                    </section>
+                </section>
+
+                <section>
+                    <h1>THE END</h1>
+                </section>
+
+            </div>
+
+        </div>
+
+        <script src="lib/js/head.min.js"></script>
+        <script src="js/reveal.min.js"></script>
+
+        <script>
+
+            // Full list of configuration options available here:
+            // https://github.com/hakimel/reveal.js#configuration
+            Reveal.initialize({
+                controls: true,
+                progress: true,
+                history: true,
+                center: true,
+
+                theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+                transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+                // Parallax scrolling
+                // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+                // parallaxBackgroundSize: '2100px 900px',
+
+                // Optional libraries used to extend on reveal.js
+                dependencies: [
+                    { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+                    { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: 'plugin/highlight/highlight.pack.js', async: true, callback: function() { hljs.classPrefix=''; hljs.initHighlightingOnLoad(); } },
+                    { src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+                    { src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+                ]
+            });
+
+        </script>
+
+    </body>
+</html>
